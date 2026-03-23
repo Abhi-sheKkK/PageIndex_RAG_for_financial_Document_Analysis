@@ -68,8 +68,6 @@ Document structures are expensive to generate. Once a PDF is processed by PageIn
 ### 2. Evaluation Caching
 LLM-as-Judge scores are stored in `pageindex_evaluation_results.csv`. Valid results are never re-evaluated, saving tokens and time. 
 
-### 3. Case-Insensitive Normalization
-Automated normalization handles differences between LLM extraction (e.g., `AMAZON.COM, INC.`) and ground truth data (e.g., `Amazon.com, Inc.`).
 
 ---
 
