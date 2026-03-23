@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+rag_env/
+venv/
+.venv/
+
+# Environment Variables
+.env
+
+# Project Specific Data & Caches
+pageindex_cache/
+vector_db/
+markdown_outputs/
+pageindex_extraction_report.csv
+pageindex_evaluation_results.csv
+
+# Visualizations
+# heatmap.png
+# heatmap_pageindex.png
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+
+src
+pageindex_RAG_simple.ipynb

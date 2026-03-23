@@ -1,0 +1,17 @@
+pymupdf4llm
+sentence-transformers
+langchain
+langchain-community
+langchain-chroma
+langchain-huggingface
+google-genai
+tenacity
+pydantic
+pandas
+matplotlib
+seaborn
+python-dotenv
+tqdm
+openpyxl
+pageindex
+openai
