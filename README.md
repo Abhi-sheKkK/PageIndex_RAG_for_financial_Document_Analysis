@@ -68,17 +68,38 @@ Document structures are expensive to generate. Once a PDF is processed by PageIn
 ### 2. Evaluation Caching
 LLM-as-Judge scores are stored in `pageindex_evaluation_results.csv`. Valid results are never re-evaluated, saving tokens and time. 
 
-
----
+### 3. Case-Insensitive Normalization
+Automated normalization handles differences between LLM extraction (e.g., `AMAZON.COM, INC.`) and ground truth data (e.g., `Amazon.com, Inc.`).
 
 ## 🏃 How to Run
 
 1. **Install dependencies**:
    ```bash
-   pip install pageindex openai pandas matplotlib seaborn python-dotenv tenacity
+   pip install pageindex openai pandas matplotlib seaborn python-dotenv tenacity openpyxl
    ```
 
 2. **Execute the pipeline**:
    ```bash
    python -m src_pageindex.main --step all
    ```
+
+---
+
+## 📊 Outcomes & Visual Comparison
+
+The following heatmaps provide a direct comparison between the **Traditional Vector RAG** (from the original CFA Institute project) and our **PageIndex Reasoning RAG** on the same 2024 Proxy data.
+
+### 1. Traditional Vector RAG (Baseline)
+The baseline approach struggles with context loss during chunking, especially in densely formatted tables (e.g., compensation tables).
+![Traditional RAG Heatmap](evaluation_result_plots/Traditional_Rag_Heatmap.jpeg)
+
+### 2. PageIndex Reasoning RAG (Experimental)
+By preserving document hierarchy and using LLM-based "Reasoning Search," the PageIndex approach achieves significantly higher accuracy, particularly in the **Realized Compensation** values.
+![PageIndex RAG Heatmap](evaluation_result_plots/heatmap_pageindex.png)
+
+### 📈 Key Performance Takeaways
+- **Structural Integrity**: PageIndex's tree-based search avoids the "lost-in-the-middle" problem of vector chunks by retrieving full semantic sections.
+- **Accuracy Boost**: We see a marked improvement (more green nodes) in the "Realized" values, which are typically buried in complex tables that traditional chunking often fragments.
+- **Reliability**: The PageIndex reasoning model shows more consistent performance across all three companies (Apple, Amazon, Microsoft) for identical fields.
+
+---
