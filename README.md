@@ -1,10 +1,33 @@
-# PageIndex: Reasoning-Based RAG Pipeline
+# PageIndex vs. Traditional RAG: Financial Document Analysis
 
-This directory contains a complete, isolated implementation of a **Reasoning-Based RAG** system using the `pageindex` tree-structure instead of traditional vector-based chunking.
+This repository is designed to compare the performance of **Reasoning-Based RAG** (via `pageindex`) against traditional chunking/vector-based RAG on complex financial proxy statements.
+
+### 📜 Acknowledgment & Origins
+The traditional RAG implementation and the foundational notebook **`Interfacing Proxy Statements - Case Study.ipynb`** are sourced from the [CFA Institute RPC - The Automation Ahead](https://github.com/CFA-Institute-RPC/The-Automation-Ahead) repository. 
+
+### 🎯 Project Motive
+While the original project utilizes a traditional chunk-and-vector RAG approach, the goal of this repository is to:
+1.  **Experiment** with the PageIndex tree-based reasoning approach on the exact same dataset (Apple, Amazon, and Microsoft proxy statements).
+2.  **Compare** the extraction accuracy and performance of both methods using the **same LLM-as-Judge evaluator** to provide a direct head-to-head comparison.
 
 ---
 
-## 🚀 Key Differences from Traditional RAG
+## 🛠 Tech Stack & Models
+
+### Core Intelligence
+- **LLM**: **`gpt-4o-mini`** (OpenAI) — Standardized for Reasoning Retrieval, Structured Extraction, and LLM-as-Judge Evaluation.
+- **Framework**: **Reasoning-Based RAG** — Replacing vector-similarity with structural document reasoning.
+
+### Key Tools & Libraries
+- **[`pageindex`](https://pageindex.ai)**: The core library for hierarchical document tree generation and navigation.
+- **`pydantic`**: Used for strict schema enforcement and structured JSON data extraction.
+- **`pandas`**: Data manipulation, report generation, and ground-truth comparison.
+- **`matplotlib` & `seaborn`**: Advanced visualization for the accuracy heatmap.
+- **`tenacity`**: Robust exponential backoff and retry logic for handling API rate limits.
+
+---
+
+## 🚀 Key Differences at a Glance
 
 | Feature | Traditional RAG (`src/`) | PageIndex RAG (`src_pageindex/`) |
 | :--- | :--- | :--- |
