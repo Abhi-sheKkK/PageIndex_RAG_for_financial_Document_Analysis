@@ -2,17 +2,17 @@
 
 This repository is designed to compare the performance of **Reasoning-Based RAG** (via `pageindex`) against traditional chunking/vector-based RAG on complex financial proxy statements.
 
-### 📜 Acknowledgment & Origins
+###  Acknowledgment & Origins
 The traditional RAG implementation and the foundational notebook **`Interfacing Proxy Statements - Case Study.ipynb`** are sourced from the [CFA Institute RPC - The Automation Ahead](https://github.com/CFA-Institute-RPC/The-Automation-Ahead) repository. 
 
-### 🎯 Project Motive
+###  Project Motive
 While the original project utilizes a traditional chunk-and-vector RAG approach, the goal of this repository is to:
 1.  **Experiment** with the PageIndex tree-based reasoning approach on the exact same dataset (Apple, Amazon, and Microsoft proxy statements).
 2.  **Compare** the extraction accuracy and performance of both methods using the **same LLM-as-Judge evaluator** to provide a direct head-to-head comparison.
 
 ---
 
-## 🛠 Tech Stack & Models
+##  Tech Stack & Models
 
 ### Core Intelligence
 - **LLM**: **`gpt-4o-mini`** (OpenAI) — Standardized for Reasoning Retrieval, Structured Extraction, and LLM-as-Judge Evaluation.
@@ -27,7 +27,7 @@ While the original project utilizes a traditional chunk-and-vector RAG approach,
 
 ---
 
-## 🚀 Key Differences at a Glance
+## Key Differences at a Glance
 
 | Feature | Traditional RAG (`src/`) | PageIndex RAG (`src_pageindex/`) |
 | :--- | :--- | :--- |
@@ -38,7 +38,7 @@ While the original project utilizes a traditional chunk-and-vector RAG approach,
 
 ---
 
-## 🛠 Project Structure
+## Project Structure
 
 - **`main.py`**: The central orchestrator. Supports `--step extract`, `--step evaluate`, and `--step all`.
 - **`rag_pipeline.py`**: Standardized on **GPT-4o-mini** for both Reasoning Retrieval and Structured Extraction.
@@ -49,7 +49,7 @@ While the original project utilizes a traditional chunk-and-vector RAG approach,
 
 ---
 
-## 🔑 Configuration
+## Configuration
 
 The pipeline is standardized on **OpenAI** (`gpt-4o-mini`) for all intelligence tasks.
 
@@ -60,7 +60,7 @@ Set these in your `.env` file or export them to your shell:
 
 ---
 
-## 📦 Features & Caching
+## Features & Caching
 
 ### 1. Document Tree Caching
 Document structures are expensive to generate. Once a PDF is processed by PageIndex, its tree structure is saved locally in `pageindex_cache/`. Subsequent runs for the same PDF will load from disk, incurring **zero** additional PageIndex costs.
@@ -71,7 +71,7 @@ LLM-as-Judge scores are stored in `pageindex_evaluation_results.csv`. Valid resu
 ### 3. Case-Insensitive Normalization
 Automated normalization handles differences between LLM extraction (e.g., `AMAZON.COM, INC.`) and ground truth data (e.g., `Amazon.com, Inc.`).
 
-## 🏃 How to Run
+## How to Run
 
 1. **Install dependencies**:
    ```bash
@@ -85,7 +85,7 @@ Automated normalization handles differences between LLM extraction (e.g., `AMAZO
 
 ---
 
-## 📊 Outcomes & Visual Comparison
+## Outcomes & Visual Comparison
 
 The following heatmaps provide a direct comparison between the **Traditional Vector RAG** (from the original CFA Institute project) and our **PageIndex Reasoning RAG** on the same 2024 Proxy data.
 
@@ -97,7 +97,7 @@ The baseline approach struggles with context loss during chunking, especially in
 By preserving document hierarchy and using LLM-based "Reasoning Search," the PageIndex approach achieves significantly higher accuracy, particularly in the **Realized Compensation** values.
 ![PageIndex RAG Heatmap](evaluation_result_plots/heatmap_pageindex.png)
 
-### 📈 Key Performance Takeaways
+### Key Performance Takeaways
 - **Structural Integrity**: PageIndex's tree-based search avoids the "lost-in-the-middle" problem of vector chunks by retrieving full semantic sections.
 - **Accuracy Boost**: We see a marked improvement (more green nodes) in the "Realized" values, which are typically buried in complex tables that traditional chunking often fragments.
 - **Reliability**: The PageIndex reasoning model shows more consistent performance across all three companies (Apple, Amazon, Microsoft) for identical fields.
